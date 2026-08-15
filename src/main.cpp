@@ -71,7 +71,7 @@ int main() {
                   std::cout<<target<<" is a shell builtin\n";
               }
               else{
-                  std::cout<<target<<": command not found\n";
+                  std::cout<<target<<": not found\n";
               }
           }
       }
