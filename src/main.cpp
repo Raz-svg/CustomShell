@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "type.h"
+//echo command mimic
 void echo(std::vector<std::string> &tokens){
     for (int i=1 ;i< tokens.size();i++){
         std::cout<< tokens[i];
@@ -14,6 +15,7 @@ void echo(std::vector<std::string> &tokens){
 
 }
 
+// tokenize the commands
 std::vector<std::string> tokenize(std::string& input){
 
     std::vector<std::string>tokens;
@@ -60,6 +62,18 @@ int main() {
       }
       else if(command[0]=="echo" && (command.size()>=1)){
           echo(command);
+      }
+      else if(command[0] == "type"){
+          for(int i = 1; i<command.size();i++){
+              const std::string& target = command[i];
+
+              if(builtin_map.find(target) != builtin_map.end()){
+                  std::cout<<target<<" is a shell builtin\n";
+              }
+              else{
+                  std::cout<<target<<": not found\n";
+              }
+          }
       }
       else{
            std::cout<<command[0]<<": command not found\n";
